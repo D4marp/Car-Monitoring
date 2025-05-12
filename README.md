@@ -7,7 +7,7 @@ Berikut adalah daftar username dan password yang digunakan dalam aplikasi ini:
 | Username             | Password    | Keterangan |
 | -------------------- | ----------- | ---------- |
 | admin@example.com    | admin123    | Admin      |
-| approver@example.com | approver123 | Approver   |
+| approval@example.com | approver123 | Approver   |
 
 ## Spesifikasi Sistem
 

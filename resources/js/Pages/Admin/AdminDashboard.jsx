@@ -20,7 +20,7 @@ export default function AdminDashboard({ orders, vehicles, vehicleUsageData }) {
             {
                 label: "Jumlah Pemakaian",
                 data: vehicleUsageData.map((data) => data.usageCount),
-                backgroundColor: "rgba(75, 192, 192, 0.6)",
+                backgroundColor: "rgba(99, 102, 241, 0.6)",
             },
         ],
     };
@@ -28,62 +28,64 @@ export default function AdminDashboard({ orders, vehicles, vehicleUsageData }) {
     return (
         <AuthenticatedLayout
             header={
-                <h2 className="text-xl font-semibold leading-tight text-gray-800">
+                <h2 className="text-3xl font-bold leading-tight text-gray-900 dark:text-white">
                     Admin Dashboard
                 </h2>
             }
         >
             <Head title="Admin Dashboard" />
 
-            <div className="py-12">
-                <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div className="py-12 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900">
+                <div className="mx-auto max-w-7xl sm:px-6 lg:px-8 space-y-8">
                     {/* Pemesanan Kendaraan */}
-                    <div className=" bg-white shadow-sm sm:rounded-lg mb-6">
-                        <div className="p-6 text-gray-900">
-                            <h3 className="text-lg font-bold mb-4">
-                                Pemesanan Kendaraan
-                            </h3>
-                            <a
-                                href="/admin/pemesanan/create"
-                                className="px-4 py-2 text-white bg-blue-600 hover:bg-blue-700 rounded-lg"
-                            >
-                                Tambah Pemesanan
-                            </a>
+                    <div className="bg-white rounded-xl shadow-lg dark:bg-gray-800">
+                        <div className="p-6">
+                            <div className="flex justify-between items-center">
+                                <h3 className="text-xl font-semibold text-gray-800 dark:text-white">
+                                    Pemesanan Kendaraan
+                                </h3>
+                                <a
+                                    href="/admin/pemesanan/create"
+                                    className="inline-block px-5 py-2 text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg shadow-md"
+                                >
+                                    Tambah Pemesanan
+                                </a>
+                            </div>
 
                             <div className="mt-6 overflow-auto">
-                                <h4 className="text-md font-semibold mb-4">
-                                    Daftar Pemesanan
-                                </h4>
-                                <table className="min-w-full table-auto">
-                                    <thead>
+                                <table className="min-w-full table-auto border-collapse border border-gray-200 dark:border-gray-700">
+                                    <thead className="bg-gray-100 dark:bg-gray-700">
                                         <tr>
-                                            <th className="px-4 py-2 border">
+                                            <th className="px-4 py-2 border text-left text-sm font-medium text-gray-700 dark:text-gray-300">
                                                 Nama Kendaraan
                                             </th>
-                                            <th className="px-4 py-2 border">
+                                            <th className="px-4 py-2 border text-left text-sm font-medium text-gray-700 dark:text-gray-300">
                                                 Driver
                                             </th>
-                                            <th className="px-4 py-2 border">
+                                            <th className="px-4 py-2 border text-left text-sm font-medium text-gray-700 dark:text-gray-300">
                                                 Approver
                                             </th>
-                                            <th className="px-4 py-2 border">
+                                            <th className="px-4 py-2 border text-left text-sm font-medium text-gray-700 dark:text-gray-300">
                                                 Status
                                             </th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {orders.map((order) => (
-                                            <tr key={order.id}>
-                                                <td className="px-4 py-2 border">
+                                            <tr
+                                                key={order.id}
+                                                className="hover:bg-gray-50 dark:hover:bg-gray-800"
+                                            >
+                                                <td className="px-4 py-2 border text-sm text-gray-700 dark:text-gray-300">
                                                     {order.vehicle.name}
                                                 </td>
-                                                <td className="px-4 py-2 border">
+                                                <td className="px-4 py-2 border text-sm text-gray-700 dark:text-gray-300">
                                                     {order.driver.name}
                                                 </td>
-                                                <td className="px-4 py-2 border">
+                                                <td className="px-4 py-2 border text-sm text-gray-700 dark:text-gray-300">
                                                     {order.approver.name}
                                                 </td>
-                                                <td className="px-4 py-2 border">
+                                                <td className="px-4 py-2 border text-sm text-gray-700 dark:text-gray-300">
                                                     {order.status}
                                                 </td>
                                             </tr>
@@ -94,70 +96,10 @@ export default function AdminDashboard({ orders, vehicles, vehicleUsageData }) {
                         </div>
                     </div>
 
-                    <div className="py-12">
-                        <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                            {/* Pemesanan Kendaraan */}
-                            <div className="overflow-auto bg-white shadow-sm sm:rounded-lg mb-6">
-                                <div className="p-6 text-gray-900">
-                                    <h3 className="text-lg font-bold mb-4">
-                                        Daftar Kendaraan
-                                    </h3>
-                                    <table className="min-w-full table-auto">
-                                        <thead>
-                                            <tr>
-                                                <th className="px-4 py-2 border">
-                                                    Nama Kendaraan
-                                                </th>
-                                                <th className="px-4 py-2 border">
-                                                    Jenis
-                                                </th>
-                                                <th className="px-4 py-2 border">
-                                                    Konsumsi BBM (per 100 km)
-                                                </th>
-                                                <th className="px-4 py-2 border">
-                                                    Jadwal Servis
-                                                </th>
-                                                <th className="px-4 py-2 border">
-                                                    Status
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {vehicles.map((vehicle) => (
-                                                <tr key={vehicle.id}>
-                                                    <td className="px-4 py-2 border">
-                                                        {vehicle.name}
-                                                    </td>
-                                                    <td className="px-4 py-2 border">
-                                                        {vehicle.type}
-                                                    </td>
-                                                    <td className="px-4 py-2 border">
-                                                        {
-                                                            vehicle.fuel_consumption
-                                                        }{" "}
-                                                        L
-                                                    </td>
-                                                    <td className="px-4 py-2 border">
-                                                        {
-                                                            vehicle.service_schedule
-                                                        }
-                                                    </td>
-                                                    <td className="px-4 py-2 border">
-                                                        {vehicle.status}
-                                                    </td>
-                                                </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     {/* Grafik Penggunaan Kendaraan */}
-                    <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg mb-6">
-                        <div className="p-6 text-gray-900">
-                            <h3 className="text-lg font-bold mb-4">
+                    <div className="bg-white rounded-xl shadow-lg dark:bg-gray-800">
+                        <div className="p-6">
+                            <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">
                                 Grafik Penggunaan Kendaraan
                             </h3>
                             <div className="h-64">
@@ -166,18 +108,74 @@ export default function AdminDashboard({ orders, vehicles, vehicleUsageData }) {
                         </div>
                     </div>
 
-                    {/* Laporan Periodik */}
-                    <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg">
-                        <div className="p-6 text-gray-900">
-                            <h3 className="text-lg font-bold mb-4">
-                                Laporan Periodik
+                    {/* Daftar Kendaraan */}
+                    <div className="bg-white rounded-xl shadow-lg dark:bg-gray-800">
+                        <div className="p-6">
+                            <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">
+                                Daftar Kendaraan
                             </h3>
-                            <a
-                                href="/admin/laporan/export"
-                                className="px-4 py-2 text-white bg-green-600 hover:bg-green-700 rounded-lg"
-                            >
-                                Export ke Excel
-                            </a>
+                            <table className="min-w-full table-auto border-collapse border border-gray-200 dark:border-gray-700">
+                                <thead className="bg-gray-100 dark:bg-gray-700">
+                                    <tr>
+                                        <th className="px-4 py-2 border text-left text-sm font-medium text-gray-700 dark:text-gray-300">
+                                            Nama Kendaraan
+                                        </th>
+                                        <th className="px-4 py-2 border text-left text-sm font-medium text-gray-700 dark:text-gray-300">
+                                            Jenis
+                                        </th>
+                                        <th className="px-4 py-2 border text-left text-sm font-medium text-gray-700 dark:text-gray-300">
+                                            Konsumsi BBM
+                                        </th>
+                                        <th className="px-4 py-2 border text-left text-sm font-medium text-gray-700 dark:text-gray-300">
+                                            Jadwal Servis
+                                        </th>
+                                        <th className="px-4 py-2 border text-left text-sm font-medium text-gray-700 dark:text-gray-300">
+                                            Status
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {vehicles.map((vehicle) => (
+                                        <tr
+                                            key={vehicle.id}
+                                            className="hover:bg-gray-50 dark:hover:bg-gray-800"
+                                        >
+                                            <td className="px-4 py-2 border text-sm text-gray-700 dark:text-gray-300">
+                                                {vehicle.name}
+                                            </td>
+                                            <td className="px-4 py-2 border text-sm text-gray-700 dark:text-gray-300">
+                                                {vehicle.type}
+                                            </td>
+                                            <td className="px-4 py-2 border text-sm text-gray-700 dark:text-gray-300">
+                                                {vehicle.fuel_consumption} L
+                                            </td>
+                                            <td className="px-4 py-2 border text-sm text-gray-700 dark:text-gray-300">
+                                                {vehicle.service_schedule}
+                                            </td>
+                                            <td className="px-4 py-2 border text-sm text-gray-700 dark:text-gray-300">
+                                                {vehicle.status}
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    {/* Laporan Periodik */}
+                    <div className="bg-white rounded-xl shadow-lg dark:bg-gray-800">
+                        <div className="p-6">
+                            <div className="flex justify-between items-center">
+                                <h3 className="text-xl font-semibold text-gray-800 dark:text-white">
+                                    Laporan Periodik
+                                </h3>
+                                <a
+                                    href="/admin/laporan/export"
+                                    className="inline-block px-5 py-2 text-white bg-green-600 hover:bg-green-700 rounded-lg shadow-md"
+                                >
+                                    Export ke Excel
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
